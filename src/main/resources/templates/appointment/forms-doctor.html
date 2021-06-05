@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HJDoshi GHS Hospital</title>
+    <meta name="description" content="HJDoshi GHS Hospital">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+
+    <link rel="stylesheet" th:href="@{/hjdoshi/normalize.min.css}">
+    <link rel="stylesheet" th:href="@{/hjdoshi/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/hjdoshi/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/hjdoshi/pe-icon-7-stroke.min.css}">
+    <link rel="stylesheet" th:href="@{/hjdoshi/flag-icon.min.css}">
+    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+</head>
+<body>
+    <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+ 				<!-- <li class="active">
+                        <a href=""><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    </li> -->
+                 <li>
+                        <a th:href="@{/doctor}"> <i class="menu-icon fa fa-user"></i>Manage Doctor </a>
+                    </li>
+                                  <li>
+                        <a th:href="department"> <i class="menu-icon fa fa-cogs"></i>Manage Department </a>
+                    </li>
+                                  <li>
+                        <a th:href="@{/appointment}"> <i class="menu-icon fa fa-wheelchair"></i>Online Appointment </a>
+                    </li>
+                                  <li>
+                        <a th:href="@{/index}"> <i class="menu-icon fa fa-bar-chart"></i>Dashboard </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/vaccination-dashboard}"> <i class="menu-icon fa fa-bar-chart"></i>Vaccination Dashboard </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/ipd-dashboard}"> <i class="menu-icon fa fa-bar-chart"></i>IPD Dashboard </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/logout}"> <i class="menu-icon fa fa-power-off"></i>Logout </a>
+                    </li>
+               </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+            <div class="top-left">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="./"><img src="images/logo2.jpg" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.jpg" alt="Logo"></a>
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+            <div class="top-right">
+                <!--div class="header-menu">
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">3</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown for-message">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-envelope"></i>
+                                <span class="count bg-primary">4</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="message">
+                                <p class="red">You have 4 Mails</p>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jonathan Smith</span>
+                                        <span class="time float-right">Just now</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jack Sanders</span>
+                                        <span class="time float-right">5 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Cheryl Wheeler</span>
+                                        <span class="time float-right">10 minutes ago</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Rachel Santos</span>
+                                        <span class="time float-right">15 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-bell-o"></i>Notifications <span class="count">13</span></a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i>Logout</a>
+                        </div>
+                    </div>
+                </div-->
+            </div>
+        </header><!-- /header -->
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>Manage Doctor</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Doctor</strong>
+                            </div>
+                            <div class="card-body">
+                                <!-- Credit Card -->
+                                <div id="pay-invoice">
+                                    <div class="card-body">
+                                        
+                                        <!-- <form action="#" method="post" novalidate="novalidate"> -->
+                                           
+                                            <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Doctor Name</label>
+                                                <input id="doctor" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                            </div>
+                                            <div class="form-group has-success">
+                                                <label for="cc-name" class="control-label mb-1">Mobile No</label>
+                                                <input id="mobileNo" name="cc-name" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name">
+                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                            </div>
+                                            <div id="workTimeTable" class="form-group">
+                                              
+											 <div class="row">
+											    <div class="col-4">
+												<div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Select Day</label>
+                                                        <select name="select" id="select" class="form-control select-days">
+
+                                                <option value="0">Please select</option>
+                                                <option value="Monday">Monday</option>
+                                                <option value="Tuesday">Tuesday</option>
+                                                <option value="Wednesday">Wednesday</option>
+                                               <option value="Thursday">Thursday</option>												
+                                               <option value="Friday">Friday</option>
+                                               <option value="Saturday">Saturday</option>
+                                               <option value="Sunday">Sunday</option>											   
+                                            </select>
+                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                                    </div>
+											
+											 </div>
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Start time</label>
+                                                        <input id="cc-exp" name="cc-exp" type="tel" class="form-control start-time" value="" data-val="true"  placeholder="Hour.Minute">
+                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label for="x_card_code" class="control-label mb-1">End Time</label>
+                                                    <div class="input-group">
+                                                        <input id="x_card_code" name="x_card_code" type="tel" class="form-control end-time" value="" data-val="true"  placeholder="Hour.Minute"autocomplete="off">
+                                                        <div class="input-group-addon">
+                                                            <span id="addWorkingTime" class="fa fa-plus-square-o fa-lg" data-toggle="popover" data-container="body" data-html="true" data-title="Security Code"
+                                                            data-content="<div class='text-center one-card'>The 3 digit code on back of the card..<div class='visa-mc-cvc-preview'></div></div>"
+                                                            data-trigger="hover"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                         
+											  </div>
+                                            </div>
+                                           <br>
+										   <div class="form-group has-success">
+                                                <label for="cc-name" class="control-label mb-1">Patient limit</label>
+                                                <input id="patientLimit" name="cc-name" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name">
+                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                            </div>
+                                            <div>
+                                                <button id="save-doctor" type="submit" class="btn btn-lg btn-info btn-block">
+                                                    <span id="payment-button-amount">Save</span>
+                                                </button>
+                                            </div>
+                                        <!-- </form> -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> <!-- .card -->
+
+                    </div><!--/.col-->
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header"><strong>Doctor</strong></div>
+                                <div class="card-body--">
+                                    <div class="table-stats order-table ov-h">
+                                        <table id="doctor-table" class="table ">
+                                            <thead>
+                                                <tr>
+                                                    <th class="serial">ID</th>
+                                                    <th>Doctor</th>
+                                                    <th>Mobile</th>
+													<th>Edit</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th class="serial">ID</th>
+                                                    <th>Doctor</th>
+                                                    <th>Mobile</th>
+													<th>Edit</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div> <!-- /.table-stats -->
+                                </div>
+                      </div>
+
+                        
+                 
+                    </div>
+
+            </div>
+
+
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
+    <div class="clearfix"></div>
+
+    <footer class="site-footer">
+        <div class="footer-inner bg-white">
+           <div class="row">
+                <div class="col-sm-6">
+                    Copyright &copy; 2020 HJDoshi GHS Hospital
+                </div>
+                <div class="col-sm-6 text-right">
+                    Designed by <a href="https://colorlib.com">Innovate Platz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div><!-- /#right-panel -->
+
+<!-- Right Panel -->
+
+<!-- Scripts -->
+<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+<script type="text/javascript"
+		th:src="@{/datatables/datatables.min.js}"></script>
+<script th:src="@{/hjdoshi/jquery.min.js}"></script>
+<script th:src="@{/hjdoshi/popper.min.js}"></script>
+<script th:src="@{/hjdoshi/bootstrap.min.js}"></script>
+<script th:src="@{/hjdoshi/jquery.matchHeight.min.js}"></script>
+<script src="assets/js/main.js"></script>
+<script>
+	$(document).ready(function() {
+		var ajaxData = null;
+    	$.ajax({
+        		type: "GET",
+           		url :'/fetch-doctor',
+           	 	contentType: "application/json",
+        		async: false,
+           		success : function(data) {
+           		console.log("successfully fetch doctor details ::" +data.length);
+           	 	console.log(data);
+           	 	ajaxData = data;
+           	}
+    	});//ajax 
+    	
+    	$('#doctor-table').DataTable({
+    	     "sServerMethod": "POST",
+    	    "data": ajaxData,
+    	    "pagingType": "full_numbers",
+    	    "columns": [
+    	    	{ "data": "doctorId" },
+    	    	{ "data": "doctorName" },
+    	    	{ "data": "mobileNo" },
+    	    	{ "data": "weblink",
+    	            "render": function ( data, type, full, meta ) {
+    	          	     return '<a href="/edit-doctor/'+full.doctorId+'">Edit</a>';
+    	          	 }
+    	        },
+    	        { "data": "weblink",
+    	              "render": function ( data, type, full, meta ) {
+    	            	     return '<a href="/delete-doctor/'+full.doctorId+'">Delete</a>';
+    	            	 }
+    	        }  
+    	    ]
+    	});
+    	
+    	
+    	$("#addWorkingTime").click(function(){
+    		var row = $('<div class="row">');
+    		var days = $('<div class="col-4"><div class="form-group"><select name="select" class="select-days form-control"><option value="0">Please select</option><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select><span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span></div></div>');
+    		var startTime = $('<div class="col-4"><div class="form-group"><input id="cc-exp" name="cc-exp" type="tel" class="form-control start-time" value="" data-val="true"  placeholder="Hour.Minute"><span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span></div></div>');
+            var endTime = $('<div class="col-4"><div class="input-group"><input id="x_card_code" name="x_card_code" type="tel" class="form-control end-time" value="" data-val="true"  placeholder="Hour.Minute"autocomplete="off"></div></div></div>');    
+           
+            
+    		var baseDiv = $(row).append(days).append(startTime).append(endTime);
+    		$("#workTimeTable").append(baseDiv);
+    	});
+    	
+    	$("#save-doctor").click(function(event) {
+    		var doctorName = $("#doctor").val();
+    		var mobileNo = $("#mobileNo").val();
+    		var patientLimit = $("#patientLimit").val();
+    		
+    		var X = document.getElementsByClassName("select-days");
+    		console.log(X);
+    		var day = [];
+    		for (var i = 0; i < X.length; i++) {
+    			//day += X[i].value + "|";
+    			day.push(X[i].value);
+    		}
+    		
+    		var Y = document.getElementsByClassName("start-time");
+    		var startTime = [];
+    		for (var i = 0; i < Y.length; i++) {
+    			//startTime += Y[i].value + "|";
+    			startTime.push(Y[i].value);
+    		}
+    		
+    		var Z = document.getElementsByClassName("end-time");
+    		var endTime = [];
+    		for (var i = 0; i < Z.length; i++) {
+    			//endTime += Z[i].value + "|";
+    			endTime.push(Z[i].value);
+    		}
+    		
+    		/* console.log("workingDays = "+day);
+    		console.log("startTime = "+startTime);
+    		console.log("endTime = "+endTime); */
+    		
+    		var fdata = {
+					"doctorName":doctorName,
+					"mobileNo":mobileNo,
+					"patientLimit":patientLimit,
+					"days":day,
+					"startTime":startTime,
+					"endTime":endTime
+			};
+			
+			//alert("fdata::" + JSON.stringify(fdata));
+					
+			$.ajax({
+				type : "POST",
+					url : '/add-doctor',
+					type : "POST",
+					data : JSON.stringify(fdata),
+					enctype : 'application/json',
+					contentType : 'application/json',
+					success : function(data) {
+						alert(data);
+					}
+			});
+    	});
+	});
+</script>	
+
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="col-md-3 left_col" th:fragment="navigation">
+		<div class="left_col scroll-view">
+			<div class="navbar nav_title" style="border: 0;">
+				<a href="index.html" class="site_title"> <!-- <i class="fa fa-paw"></i> -->
+					<span>Contexio!</span>
+				</a>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<!-- menu profile quick info -->
+			<div class="profile clearfix">
+				<div class="profile_pic">
+					<img th:src="@{/images/contexio.png}" alt="..."
+						class="img-circle profile_img">
+				</div>
+				<div class="profile_info">
+					<span>Welcome,</span>
+					<h2>[[${#httpServletRequest.remoteUser}]]</h2>
+				</div>
+			</div>
+			<!-- /menu profile quick info -->
+
+			<br />
+
+			<!-- sidebar menu -->
+			<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+				<div class="menu_section">
+					<h3>General</h3>
+					<ul class="nav side-menu">
+						<li><a><i class="fa fa-edit"></i>Project Configuration <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/variants}"><i
+										class="fa fa-cloud-upload"></i>Variants</a></li>
+								<li><a th:href="@{/defining-attribute}"><i
+										class="fa fa-cloud-upload"></i>Defining Attribute</a></li>
+								<li><a th:href="@{/project-category-attribute}"><i
+										class="fa fa-cloud-upload"></i>Project Category Attribute Status</a></li>
+								
+								<li><a th:href="@{/attribute-update}"><i
+										class="fa fa-cloud-upload"></i>Update Attribute</a></li>
+								<li><a th:href="@{/process_autodecs}"><i
+										class="fa fa-cloud-upload"></i>Process Auto Description</a></li>
+									<li><a th:href="@{/autodesc_info}"><i
+										class="fa fa-cloud-upload"></i>Auto Description Info</a></li>
+										<li><a th:href="@{/process_autoTitle}"><i
+										class="fa fa-cloud-upload"></i>Auto Title Configuration</a></li>
+							</ul></li>
+						<li><a><i class="fa fa-edit"></i>PreProcessing <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/bulk-category}"><i
+										class="fa fa-cloud-upload"></i>Upload Category</a></li>
+								<li><a th:href="@{/template-update}"><i
+										class="fa fa-cloud-upload"></i>Update Category Template</a></li>
+								<li><a th:href="@{/attribute-upload}"><i
+										class="fa fa-cloud-upload"></i>Upload Attribute</a></li>
+								<li><a th:href="@{/lov-upload}"><i
+										class="fa fa-cloud-upload"></i>Upload LOV</a></li>	
+								<li><a th:href="@{/category-category-mapping}"><i
+										class="fa fa-exchange"></i>Category to Category Mapping</a></li>
+								<li><a th:href="@{/category-attribute-mapping}"><i
+										class="fa fa-paperclip"></i>Category to Attribute Mapping</a></li>
+								<li><a th:href="@{/attribute-attribute-mapping}"><i
+										class="fa fa-table"></i>Attribute to Attribute Mapping</a></li>
+								<li><a th:href="@{/lov-lov-mapping}"><i
+										class="fa fa-file-text"></i>LOV to LOV Mapping</a></li>
+							</ul></li>
+						<li><a><i class="fa fa-table"></i> Batch Allocation <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/product-upload}"><i
+										class="fa fa-exchange"></i>Batch Creation </a></li>
+								<li><a th:href="@{/batch-allocation}"><i
+										class="fa fa-file-text"></i>Batch Allocation</a></li>
+								<li><a th:href="@{/view-allocation}"><i
+										class="fa fa-file-text"></i>View Allocations</a></li>
+								<li><a th:href="@{/delete-batches}"><i
+										class="fa fa-file-text"></i>BackUp / Delete Batch</a></li>	
+							</ul></li>
+						<li><a><i class="fa fa-table"></i> Stages <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu" id="stage">
+							</ul></li>
+							
+						<li><a><i class="fa fa-table"></i>Double Mining Stages <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu" id="dmStage">
+							</ul></li>
+							<li><a th:href="@{/masterTemplate}"><i class="fa fa-table"></i>Convert To Master Template </a></li>
+							
+							<li><a><i class="fa fa-table"></i>All Batches Report <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/all-batches}"><i
+										class="fa fa-file-text"></i>All Batches</a></li>
+										<li><a><i class="fa fa-table"></i> Stage wise Batches <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu" id="stage1"></ul></li>
+							</ul></li>
+							<li><a><i class="fa fa-table"></i> File Based Processing <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/stagewise-file-upload}"><i
+										class="fa fa-cloud-upload"></i>Stage wise file Upload</a></li>
+							</ul></li>
+						
+						<!-- 	<li><a th:href="@{/feed-conversion}"><i class="fa fa-table"></i>Feed Conversion </a>
+							<ul class="nav child_menu" id="feedConvo">
+								<li><a th:href="@{/paramGroup}">
+									<i class="fa fa-exchange"></i>Parameter Group</a>
+								</li>
+								<li><a th:href="@{/paramSubGroupMapping}">
+									<i class="fa fa-exchange"></i>Parameter SubGroup Mapping</a>
+								</li>		
+								<li><a th:href="@{/mapping-rule-criteria}">
+									<i class="fa fa-exchange"></i>Rule to Criteria Mapping</a>
+								</li>
+							</ul></li> -->
+							<li><a><i class="fa fa-table"></i> Feed Conversion <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/advanced-feed-conversion}"><i
+										class="fa fa-exchange"></i>Advanced Feed Conversion</a></li>
+								<li><a th:href="@{/feed-conversion}"><i
+										class="fa fa-exchange"></i>Traditional Feed Conversion</a></li>		
+							</ul></li>
+							<li><a th:href="@{/rule-export-page}"><i class="fa fa-table"></i>Rule Export </a></li>
+							<li><a><i class="fa fa-table"></i> Content Auditing <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/paramGroup}"><i
+										class="fa fa-exchange"></i>Parameter Group</a></li>
+								<li><a th:href="@{/paramSubGroupMapping}"><i
+										class="fa fa-exchange"></i>Parameter SubGroup Mapping</a></li>		
+								<li><a th:href="@{/mapping-rule-criteria}"><i
+										class="fa fa-exchange"></i>Rule to Criteria Mapping</a></li>
+								<li><a th:href="@{/rating-chart-plus}"><i
+										class="fa fa-paperclip"></i>Rating Chart</a></li>
+								<li><a th:href="@{/run-content-audit}"><i
+										class="fa fa-table"></i>Run Audit</a></li>
+								<li><a th:href="@{/criteria-configuration}"><i
+										class="fa fa-file-text"></i>Criteria Configuration</a></li>
+							</ul></li>	
+
+						<li><a href="javascript:void(0)"><i class="fa fa-laptop"></i>
+								Reports Page <span class="label label-success pull-right"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/final-batch-report}"><i
+										class="fa fa-file-text"></i>Batch wise Report </a></li>
+							</ul></li>
+					</ul>
+				</div>
+
+			</div>
+			<!-- /sidebar menu -->
+			<!-- /menu footer buttons -->
+			<div class="sidebar-footer hidden-small">
+				<a data-toggle="tooltip" data-placement="top" title="Settings">
+					<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				</a> <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+					<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+				</a> <a data-toggle="tooltip" data-placement="top" title="Lock"> <span
+					class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+				</a> <a data-toggle="tooltip" data-placement="top" title="Logout"
+					href="login.html"> <span class="glyphicon glyphicon-off"
+					aria-hidden="true"></span>
+				</a>
+			</div>
+			<!-- /menu footer buttons -->
+		</div>
+	</div>
+
+	<!-- top navigation -->
+	<div class="top_nav" th:fragment="topNavigation">
+		<div class="nav_menu">
+			<nav>
+				<div class="nav toggle">
+					<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class=""><a href="javascript:;"
+						class="user-profile dropdown-toggle" data-toggle="dropdown"
+						aria-expanded="false"> <img th:src="@{/images/contexio.png}"
+							alt="">[[${#httpServletRequest.remoteUser}]] <span
+							class=" fa fa-angle-down"></span>
+					</a>
+						<ul class="dropdown-menu dropdown-usermenu pull-right">
+							<li><a href="javascript:;"> Profile</a></li>
+							<li><a href="javascript:;"> <span
+									class="badge bg-red pull-right">50%</span> <span>Settings</span>
+							</a></li>
+							<li><a href="javascript:;">Help</a></li>
+							<!--  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li> -->
+							<li><a th:href="@{/logout}">Logout</a></li>
+						</ul></li>
+
+					<li role="presentation" class="dropdown"><a
+						href="javascript:;" class="dropdown-toggle info-number"
+						data-toggle="dropdown" aria-expanded="false"> <i
+							class="fa fa-envelope-o"></i> <span class="badge bg-green">6</span>
+					</a>
+						<ul id="menu1" class="dropdown-menu list-unstyled msg_list"
+							role="menu">
+							<li><a> <span class="image"><img
+										th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+										<span>John Smith</span> <span class="time">3 mins ago</span>
+								</span> <span class="message"> Film festivals used to be
+										do-or-die moments for movie makers. They were where... </span>
+							</a></li>
+							<li><a> <span class="image"><img
+										th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+										<span>John Smith</span> <span class="time">3 mins ago</span>
+								</span> <span class="message"> Film festivals used to be
+										do-or-die moments for movie makers. They were where... </span>
+							</a></li>
+							<li><a> <span class="image"><img
+										th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+										<span>John Smith</span> <span class="time">3 mins ago</span>
+								</span> <span class="message"> Film festivals used to be
+										do-or-die moments for movie makers. They were where... </span>
+							</a></li>
+							<li><a> <span class="image"><img
+										th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+										<span>John Smith</span> <span class="time">3 mins ago</span>
+								</span> <span class="message"> Film festivals used to be
+										do-or-die moments for movie makers. They were where... </span>
+							</a></li>
+							<li>
+								<div class="text-center">
+									<a> <strong>See All Alerts</strong> <i
+										class="fa fa-angle-right"></i>
+									</a>
+								</div>
+							</li>
+						</ul></li>
+				</ul>
+				<div class="x_panel">
+					<div class="row">
+						<div class="col-md-2 in_solid">
+							<h4>Select Company</h4>
+						</div>
+						<div class="col-md-2 in_solid">
+							<h4>Select Department</h4>
+						</div>
+						<div class="col-md-2 in_solid">
+							<h4>Select Client</h4>
+						</div>
+						<div class="col-md-3 in_solid">
+							<h4>Select Project</h4>
+						</div>
+						<!-- <div class="col-md-3 in_solid">
+							<h4>Select competitor</h4>
+						</div> -->
+					</div>
+					<div>
+						<div class="col-md-2 " id="mainCat">
+
+							<select class="form-control ha" name="company" id="company">
+								<option selected="selected">select</option>
+							</select>
+
+						</div>
+						<div class="col-md-2">
+							<select class="form-control ha" id="department" name="department">
+								<option selected="selected">select</option>
+							</select>
+						</div>
+						<div class="col-md-2 ">
+							<select class="form-control ha" id="client" name="client">
+								<option selected="selected">select</option>
+							</select>
+						</div>
+						<div class="col-md-3 ">
+							<select class="form-control ha" id="project" name="project">
+								<option selected="selected">select</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- /top navigation -->
+<!-- top navigation for feed Convertion -->
+	<div class="top_nav" th:fragment="topNavigationFeedConvertion">
+		<div class="nav_menu">
+			<nav>
+				<div class="nav toggle">
+					<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class=""><a href="javascript:;"
+						class="user-profile dropdown-toggle" data-toggle="dropdown"
+						aria-expanded="false"> <img th:src="@{/images/contexio.png}" alt="">
+							[[${#httpServletRequest.remoteUser}]]<span class=" fa fa-angle-down"></span>
+					</a>
+						<ul class="dropdown-menu dropdown-usermenu pull-right">
+							<li><a href="javascript:;"> Profile</a></li>
+							<li><a href="javascript:;"> <span
+									class="badge bg-red pull-right">50%</span> <span>Settings</span>
+							</a></li>
+							<li><a href="javascript:;">Help</a></li>
+							<!--  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li> -->
+							<li><a th:href="@{/logout}">Logout</a></li>
+						</ul></li>
+
+					<li role="presentation" class="dropdown"><a
+						href="javascript:;" class="dropdown-toggle info-number"
+						data-toggle="dropdown" aria-expanded="false"> <i
+							class="fa fa-envelope-o"></i> <span class="badge bg-green">6</span>
+					</a>
+						<ul id="menu1" class="dropdown-menu list-unstyled msg_list"
+							role="menu">
+							<li><a> <span class="image"><img
+										th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span> <span>John
+											Smith</span> <span class="time">3 mins ago</span>
+								</span> <span class="message"> Film festivals used to be
+										do-or-die moments for movie makers. They were where... </span>
+							</a></li>
+							<li><a> <span class="image"><img
+										th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span> <span>John
+											Smith</span> <span class="time">3 mins ago</span>
+								</span> <span class="message"> Film festivals used to be
+										do-or-die moments for movie makers. They were where... </span>
+							</a></li>
+							<li><a> <span class="image"><img
+										th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span> <span>John
+											Smith</span> <span class="time">3 mins ago</span>
+								</span> <span class="message"> Film festivals used to be
+										do-or-die moments for movie makers. They were where... </span>
+							</a></li>
+							<li><a> <span class="image"><img
+										th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span> <span>John
+											Smith</span> <span class="time">3 mins ago</span>
+								</span> <span class="message"> Film festivals used to be
+										do-or-die moments for movie makers. They were where... </span>
+							</a></li>
+							<li>
+								<div class="text-center">
+									<a> <strong>See All Alerts</strong> <i
+										class="fa fa-angle-right"></i>
+									</a>
+								</div>
+							</li>
+						</ul></li>
+				</ul>
+				<div class="x_panel">
+					<div class="row">
+						<div class="col-md-2 in_solid">
+							<h4>Select Company</h4>
+						</div>
+						<div class="col-md-2 in_solid">
+							<h4>Select Department</h4>
+						</div>
+						<div class="col-md-2 in_solid">
+							<h4>Select Client</h4>
+						</div>
+						<div class="col-md-3 in_solid">
+							<h4>Select Project</h4>
+						</div>
+						<!-- <div class="col-md-3 in_solid">
+							<h4>Select Client Category</h4>
+						</div> -->
+						 
+						 
+					</div>
+					<div>
+						<div class="col-md-2 " id="mainCat">
+
+							<select class="form-control ha" name="company" id="company">
+								<option selected="selected">select</option>
+							</select>
+
+						</div>
+						<div class="col-md-2">
+							<select class="form-control ha" id="department" name="department">
+								<option selected="selected">select</option>
+							</select>
+						</div>
+						<div class="col-md-2 ">
+							<select class="form-control ha" id="client" name="client">
+								<option selected="selected">select</option>
+							</select>
+						</div>
+						<div class="col-md-3 ">
+							<select class="form-control ha" id="project" name="project">
+								<option selected="selected">select</option>
+							</select>
+						</div>
+					<!-- 	<div class="col-md-3 ">
+							<select class="form-control ha" id="clientcategory" name="category">
+								<option selected="selected">select</option>
+							</select>
+						</div> -->
+						
+					</div>
+
+				</div>
+			</nav>
+		</div>
+	</div>
+	
+	
+<!--End of top navigation for feed conversion -->
+<!-- Top navigation For auto description Page -->
+<div class="top_nav" th:fragment="topNavigationAutoDesc">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li class=""><a href="javascript:;"
+								class="user-profile dropdown-toggle" data-toggle="dropdown"
+								aria-expanded="false"> <img th:src="@{/images/contexio.png}"
+									alt=""> <span class=" fa fa-angle-down"></span>
+							</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<li><a href="javascript:;"> Profile</a></li>
+									<li><a href="javascript:;"> <span
+											class="badge bg-red pull-right">50%</span> <span>Settings</span>
+									</a></li>
+									<li><a href="javascript:;">Help</a></li>
+									<!--  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li> -->
+									<li><a th:href="@{/logout}">Logout</a></li>
+								</ul></li>
+
+							<li role="presentation" class="dropdown"><a
+								href="javascript:;" class="dropdown-toggle info-number"
+								data-toggle="dropdown" aria-expanded="false"> <i
+									class="fa fa-envelope-o"></i> <span class="badge bg-green">6</span>
+							</a>
+								<ul id="menu1" class="dropdown-menu list-unstyled msg_list"
+									role="menu">
+									<li><a> <span class="image"><img
+												th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+												<span>John Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li><a> <span class="image"><img
+												th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+												<span>John Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li><a> <span class="image"><img
+												th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+												<span>John Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li><a> <span class="image"><img
+												th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+												<span>John Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li>
+										<div class="text-center">
+											<a> <strong>See All Alerts</strong> <i
+												class="fa fa-angle-right"></i>
+											</a>
+										</div>
+									</li>
+								</ul></li>
+						</ul>
+						<div class="x_panel">
+							<div class="row">
+								<div class="col-md-2 in_solid">
+									<h4>Select Company</h4>
+								</div>
+								<div class="col-md-2 in_solid">
+									<h4>Select Department</h4>
+								</div>
+								<div class="col-md-2 in_solid">
+									<h4>Select Client</h4>
+								</div>
+								<div class="col-md-3 in_solid">
+									<h4>Select Project</h4>
+								</div>
+								<div class="col-md-3 in_solid">
+									<h4>Select Category</h4>
+								</div>
+								<!-- <div class="col-md-3 in_solid">
+							<h4>Select competitor</h4>
+						</div> -->
+								<form action="#">
+							</div>
+							<div>
+								<div class="col-md-2 " id="mainCat">
+
+									<select class="form-control ha" name="company" id="company"
+										required>
+										<option value="">select</option>
+									</select>
+
+								</div>
+								<div class="col-md-2">
+									<select class="form-control ha" id="department"
+										name="department" required>
+										<option value="">select</option>
+									</select>
+								</div>
+								<div class="col-md-2 ">
+									<select class="form-control ha" id="client" name="client"
+										required>
+										<option value=""> select</option>
+									</select>
+								</div>
+								<div class="col-md-3 ">
+									<select class="form-control ha" id="project" name="project"
+										required>
+										<option value="">select</option>
+									</select>
+								</div>
+								<div class="col-md-3 ">
+									<select class="form-control ha" id="category" name="category"
+										required>
+										<option value="">select</option>
+									</select>
+								</div>
+							</div>
+
+						</div>
+					</nav>
+				</div>
+			</div>
+
+
+<!-- End of top navigation for auto description page -->
+
+<!-- Top navigation For Lov Lov Mapping -->
+<div class="top_nav" th:fragment="topNavigationLovLovMapping">
+				<div class="nav_menu">
+					<nav>
+						<div class="nav toggle">
+							<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li class=""><a href="javascript:;"
+								class="user-profile dropdown-toggle" data-toggle="dropdown"
+								aria-expanded="false"> <img th:src="@{/images/contexio.png}"
+									alt=""> <span class=" fa fa-angle-down"></span>
+							</a>
+								<ul class="dropdown-menu dropdown-usermenu pull-right">
+									<li><a href="javascript:;"> Profile</a></li>
+									<li><a href="javascript:;"> <span
+											class="badge bg-red pull-right">50%</span> <span>Settings</span>
+									</a></li>
+									<li><a href="javascript:;">Help</a></li>
+									<!--  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li> -->
+									<li><a th:href="@{/logout}">Logout</a></li>
+								</ul></li>
+
+							<li role="presentation" class="dropdown"><a
+								href="javascript:;" class="dropdown-toggle info-number"
+								data-toggle="dropdown" aria-expanded="false"> <i
+									class="fa fa-envelope-o"></i> <span class="badge bg-green">6</span>
+							</a>
+								<ul id="menu1" class="dropdown-menu list-unstyled msg_list"
+									role="menu">
+									<li><a> <span class="image"><img
+												th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+												<span>John Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li><a> <span class="image"><img
+												th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+												<span>John Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li><a> <span class="image"><img
+												th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+												<span>John Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li><a> <span class="image"><img
+												th:src="@{/images/contexio.png}" alt="Profile Image" /></span> <span>
+												<span>John Smith</span> <span class="time">3 mins ago</span>
+										</span> <span class="message"> Film festivals used to be
+												do-or-die moments for movie makers. They were where... </span>
+									</a></li>
+									<li>
+										<div class="text-center">
+											<a> <strong>See All Alerts</strong> <i
+												class="fa fa-angle-right"></i>
+											</a>
+										</div>
+									</li>
+								</ul></li>
+						</ul>
+						<div class="x_panel">
+							<div class="row">
+								<div class="col-md-2 in_solid">
+									<h4>Select Company</h4>
+								</div>
+								<div class="col-md-2 in_solid">
+									<h4>Select Department</h4>
+								</div>
+								
+								<!-- <div class="col-md-3 in_solid">
+							<h4>Select competitor</h4>
+						</div> -->
+								<form action="#">
+							</div>
+							<div>
+								<div class="col-md-2 " id="mainCat">
+
+									<select class="form-control ha" name="company" id="company"
+										required>
+										<option value="">select</option>
+									</select>
+
+								</div>
+								<div class="col-md-2">
+									<select class="form-control ha" id="department"
+										name="department" required>
+										<option value="">select</option>
+									</select>
+								</div>
+								
+							</div>
+
+						</div>
+					</nav>
+				</div>
+			</div>
+
+
+<!-- End of top navigation for auto description page -->
+
+
+	<!-- jQuery -->
+	<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+	<!-- Bootstrap -->
+	<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<!-- FastClick -->
+	<script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
+	<!-- NProgress -->
+	<script th:src="@{/vendors/nprogress/nprogress.js}"></script>
+	<!-- Dropzone.js -->
+	<script th:src="@{/vendors/dropzone/dist/min/dropzone.min.js}"></script>
+
+	<!-- Custom Theme Scripts -->
+	<script th:src="@{/build/js/custom.min.js}"></script>
+</body>
+</html>

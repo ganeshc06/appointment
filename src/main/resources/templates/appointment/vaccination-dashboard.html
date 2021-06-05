@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HJDoshi GHS Hospital</title>
+    <meta name="description" content="HJDoshi GHS Hospital">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+
+    <link rel="stylesheet" th:href="@{/hjdoshi/normalize.min.css}">
+    <link rel="stylesheet" th:href="@{/hjdoshi/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/hjdoshi/themify-icons.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" th:href="@{/hjdoshi/flag-icon.min.css}">
+    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <link th:href="@{/hjdoshi/chartist.min.css}" rel="stylesheet">
+    <link th:href="@{/hjdoshi/jqvmap.min.css}" rel="stylesheet">
+
+    <link th:href="@{/hjdoshi/weather-icons.css}" rel="stylesheet" />
+    <link th:href="@{/hjdoshi/fullcalendar.min.css}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" th:href="@{/hjdoshi/jquery-ui.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/hjdoshi/dataTables.jqueryui.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/hjdoshi/buttons.jqueryui.css}" />
+    <!-- <link rel="stylesheet" type="text/css"
+		th:href="@{/datatables/datatables.min.css}" /> -->
+
+   <style>
+    #weatherWidget .currentDesc {
+        color: #ffffff!important;
+    }
+        .traffic-chart {
+            min-height: 335px;
+        }
+        #flotPie1  {
+            height: 150px;
+        }
+        #flotPie1 td {
+            padding:3px;
+        }
+        #flotPie1 table {
+            top: 20px!important;
+            right: -10px!important;
+        }
+        .chart-container {
+            display: table;
+            min-width: 270px ;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #flotLine5  {
+             height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+        #cellPaiChart{
+            height: 160px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Left Panel -->
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- <li class="active">
+                        <a href=""><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    </li> -->
+                 <li>
+                        <a th:href="@{/doctor}"> <i class="menu-icon fa fa-user"></i>Manage Doctor </a>
+                    </li>
+                                  <li>
+                        <a th:href="department"> <i class="menu-icon fa fa-cogs"></i>Manage Department </a>
+                    </li>
+                                  <li>
+                        <a th:href="@{/appointment}"> <i class="menu-icon fa fa-wheelchair"></i>Online Appointment </a>
+                    </li>
+                                  <li>
+                        <a th:href="@{/index}"> <i class="menu-icon fa fa-bar-chart"></i>Dashboard </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/vaccination-dashboard}"> <i class="menu-icon fa fa-bar-chart"></i>Vaccination Dashboard </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/ipd-dashboard}"> <i class="menu-icon fa fa-bar-chart"></i>IPD Dashboard </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/logout}"> <i class="menu-icon fa fa-power-off"></i>Logout </a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside>
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        <header id="header" class="header">
+            <div class="top-left">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="./"><img src="images/logo2.jpg" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.jpg" alt="Logo"></a>
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+            <div class="top-right">
+            </div>
+        </header>
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            <div class="animated fadeIn">
+                <!-- Widgets  -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-1">
+                                        <i class="pe-7s-cash"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span id="totalVaccinated" class="count"></span></div>
+                                            <div class="stat-heading">Total Vaccinated</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">	
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-2">
+                                        <i class="pe-7s-cart"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span id="todayVaccinated" class="count"></span></div>
+                                            <div class="stat-heading">Today Vaccinated</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-3">
+                                        <i class="pe-7s-browser"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span id="totalDepartments" class="count"></span></div>
+                                            <div class="stat-heading"> Departments</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-4">
+                                        <i class="pe-7s-users"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span id="totalDoctors" class="count"></span></div>
+                                            <div class="stat-heading">Doctors</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- /Widgets -->
+               
+                <div class="clearfix"></div>
+                <!-- Orders -->
+                <div class="orders">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">Online Patient details </h4>
+                                </div>
+                                <div class="card-body--">
+                                    <div class="table-stats order-table ov-h">
+                                        <table class="display" style="width:100%" id="viewVaccinationTable">
+                                            <thead>
+                                                <tr>
+                                                    <th class="serial">ID</th>
+                                                    <th>Patient</th>
+                                                    <th>Contact No</th>
+                                                    <th>Locality</th>
+													<th>Feedback 1</th>
+													<th>Feedback 2</th>
+													<th>Feedback 3</th>
+													<th>Feedback 4</th>
+													<th>Feedback 5</th>
+													<th>Insert Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                            	<tr>
+                                                   <th class="serial">ID</th>
+                                                    <th>Patient</th>
+                                                    <th>Contact No</th>
+                                                    <th>Locality</th>
+													<th>Feedback 1</th>
+													<th>Feedback 2</th>
+													<th>Feedback 3</th>
+													<th>Feedback 4</th>
+													<th>Feedback 5</th>
+													<th>Insert Date</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div> <!-- /.table-stats -->
+                                </div>
+                            </div> <!-- /.card -->
+                        </div>  <!-- /.col-lg-8 -->
+
+                        
+                    </div>
+                </div>
+                <!-- /.orders -->
+               
+               
+               
+            </div>
+            <!-- .animated -->
+        </div>
+        <!-- /.content -->
+        <div class="clearfix"></div>
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-inner bg-white">
+                <div class="row">
+                <div class="col-sm-6">
+                    Copyright &copy; 2020 HJDoshi GHS Hospital
+                </div>
+                <div class="col-sm-6 text-right">
+                    Designed by <a href="https://colorlib.com">Innovate Platz</a>
+                </div>
+            </div>
+            </div>
+        </footer>
+        <!-- /.site-footer -->
+    </div>
+    <!-- /#right-panel -->
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script th:src="@{/datatables/jquery-3.5.1.js}"></script>
+	<script th:src="@{/datatables/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/datatables/dataTables.buttons.min.js}"></script>
+	<script th:src="@{/datatables/jszip.min.js}"></script>
+	<script th:src="@{/datatables/pdfmake.min.js}"></script>
+	<script th:src="@{/datatables/vfs_fonts.js}"></script>
+	<script th:src="@{/datatables/buttons.html5.min.js}"></script>
+
+	
+
+    <!--Local Stuff-->
+    <script>
+        //jQuery(document).ready(function($) {
+        jQuery(document).ready(function($) {	
+        	var ajaxData = null;
+        	var statData = null;
+        	
+        	
+    	
+        	$.ajax({
+	        		type: "GET",
+	           		url :'/fetch-vaccination-details',
+	           	 	contentType: "application/json",
+	        		async: false,
+	           		success : function(data) {
+	           		console.log("successfully fetch appointment details ::" +data.length);
+	           	 	//console.log(data);
+	           	 	ajaxData = data;
+	           	}
+        	});//ajax 
+        	
+        	$('#viewVaccinationTable').DataTable({ 
+        		sServerMethod: "GET",
+                data: ajaxData,
+                columns: [
+        	    	{ "data": "feedId" },
+        	    	{ "data": "patientName" },
+        	          { "data": "contactNumber" },
+        	          { "data": "locality" },
+        	          { "data": "feedback1" },
+        	          { "data": "feedback2"},
+        	          { "data": "feedback3"},
+        	          { "data": "feedback4"},
+        	          { "data": "feedback5"},
+        	          { "data": "insertDate"},
+        	    ],
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
+        	});
+        	
+        	$.ajax({
+        		type: "GET",
+           		url :'/fetch-vaccination-statistics',
+           	 	contentType: "application/json",
+        		async: false,
+           		success : function(data) {
+	           		console.log("successfully fetch statistics details");
+	           	 	statData = data;
+	           	 	$("#totalVaccinated").text(statData.totalVaccinated);
+	           	 	$("#todayVaccinated").text(statData.todayVaccinated);
+	           	
+           		}
+    		});//ajax 
+        	
+        });
+        
+    </script>
+    
+    
+</body>
+</html>

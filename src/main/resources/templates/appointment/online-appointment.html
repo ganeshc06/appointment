@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HJDoshi GHS Hospital</title>
+    <meta name="description" content="HJDoshi GHS Hospital">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+
+    <link rel="stylesheet" th:href="@{/hjdoshi/normalize.min.css}">
+    <link rel="stylesheet" th:href="@{/hjdoshi/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/hjdoshi/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/hjdoshi/pe-icon-7-stroke.min.css}">
+    <link rel="stylesheet" th:href="@{/hjdoshi/flag-icon.min.css}">
+    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" th:href="@{/hjdoshi/jquery-ui.css}">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+</head>
+<body>
+    <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+					<!-- <li class="active">
+                        <a href=""><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    </li> -->
+                 <li>
+                        <a th:href="@{/doctor}"> <i class="menu-icon fa fa-user"></i>Manage Doctor </a>
+                    </li>
+                                  <li>
+                        <a th:href="department"> <i class="menu-icon fa fa-cogs"></i>Manage Department </a>
+                    </li>
+                                  <li>
+                        <a th:href="@{/appointment}"> <i class="menu-icon fa fa-wheelchair"></i>Online Appointment </a>
+                    </li>
+                                  <li>
+                        <a th:href="@{/index}"> <i class="menu-icon fa fa-bar-chart"></i>Dashboard </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/vaccination-dashboard}"> <i class="menu-icon fa fa-bar-chart"></i>Vaccination Dashboard </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/ipd-dashboard}"> <i class="menu-icon fa fa-bar-chart"></i>IPD Dashboard </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/logout}"> <i class="menu-icon fa fa-power-off"></i>Logout </a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+            <div class="top-left">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="./"><img src="images/logo2.jpg" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.jpg" alt="Logo"></a>
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+            <div class="top-right">
+                <!--div class="header-menu">
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">3</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown for-message">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-envelope"></i>
+                                <span class="count bg-primary">4</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="message">
+                                <p class="red">You have 4 Mails</p>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jonathan Smith</span>
+                                        <span class="time float-right">Just now</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jack Sanders</span>
+                                        <span class="time float-right">5 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Cheryl Wheeler</span>
+                                        <span class="time float-right">10 minutes ago</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Rachel Santos</span>
+                                        <span class="time float-right">15 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" th:href="@{/doctor}"><i class="fa fa-user"></i>My Profile</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-bell-o"></i>Notifications <span class="count">13</span></a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i>Logout</a>
+                        </div>
+                    </div>
+                </div-->
+            </div>
+        </header><!-- /header -->
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>Onilne Appointment</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Doctor</strong>
+                            </div>
+                            <div class="card-body">
+                                <!-- Credit Card -->
+                                <div id="pay-invoice">
+                                    <div class="card-body">
+                                        
+                                        <!-- <form action="#" method="post" novalidate="novalidate"> -->
+                                           <div class="form-group">
+                                                <label for="patientFirstName" class="control-label mb-1">First Name</label>
+                                                <input id="patientFirstName" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" value="" required>
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="patientLastName" class="control-label mb-1">Last Name</label>
+                                                <input id="patientLastName" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                            </div>
+                                            <div class="form-group has-success">
+                                                <label for="cc-name" class="control-label mb-1">Mobile No</label>
+                                                <input id="mobileNo" name="cc-name" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name" required>
+                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                            </div>
+											  <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Select Department</label>
+                                                        <select name="select" id="department" class="form-control">
+			                                            </select>
+                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cc-exp" class="control-label mb-1">Select Doctor</label>
+                                                        <select name="select" id="doctor" class="form-control" disabled>
+                                                        	<option value="4">Ganesh</option>
+			                                            </select>
+                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                            </div>
+                                            <div class="form-group">
+                                              
+                                         
+											 <div class="row">
+											    <div class="col-4">
+												<div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Select Day</label>
+                                                        <select name="select" id="appointmentDay" class="form-control" disabled>
+
+                                                <option value="0">Please select</option>
+                                                <option value="Monday">Monday</option>
+                                                <option value="Tuesday">Tuesday</option>
+                                                <option value="Wednesday">Wednesday</option>
+                                               <option value="Thursday">Thursday</option>												
+                                               <option value="Friday">Friday</option>
+                                               <option value="Saturday">Saturday</option>
+                                               <option value="Sunday">Sunday</option>											   
+                                            </select>
+                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                                    </div>
+											
+											 </div>
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Booking slot</label>
+                                                        <input id="appointmentSlot" name="cc-exp" type="tel" class="form-control cc-exp" value="" data-val="true"  placeholder="Hour.Minute" disabled>
+                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Alloted slot</label>
+                                                        <input id="allotedSlot" name="cc-exp" type="tel" class="form-control cc-exp" value="" data-val="true"  placeholder="Hour.Minute">
+                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+                                              
+                                         
+											  </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="datepicker" class="control-label mb-1">Select Date</label>
+                                                <input id="datepicker" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                            </div>
+                                            <div class="form-group">
+                                              
+                                         
+											 <div class="row">
+											    <div class="col-6">
+												<div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Gender</label>
+                                                        <select name="select" id="gender" class="form-control">
+			                                                <option value="0">Please select</option>
+			                                                <option value="Male">Male</option>
+			                                                <option value="Female">Female</option>
+                                            			</select>
+                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                                 </div>
+											 </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="cc-exp" class="control-label mb-1">Age</label>
+                                                        <input id="patient-age" name="cc-exp" type="number" class="form-control cc-exp" value="" data-val="true"  placeholder="18">
+                                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+                                              
+                                         
+											  </div>
+                                            </div>
+                                            <div class="row form-group">
+                                       <div class="col col-md-4"><label class=" form-control-label">Visiting Type</label></div>
+                                       <div class="col col-md-8">
+                                           <div class="form-check-inline form-check">
+                                               <label for="inline-radio1" class="form-check-label ">
+                                                   <input type="radio" id="inline-radio1" name="inline-radios" value="First Time" class="form-check-input">First Time
+                                               </label>
+                                               <label for="inline-radio2" class="form-check-label ">
+                                                   <input type="radio" id="inline-radio2" name="inline-radios" value="Follow Up" class="form-check-input">Follow Up
+                                               </label>
+                                           </div>
+                                       </div>
+                                   </div>
+                                            <div class="form-group">
+                                                <label for="reference" class="control-label mb-1">Reference</label>
+                                                <input id="reference" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address" class="control-label mb-1">Address</label>
+                                                <input id="address" name="cc-payment" class="form-control" type="text" aria-required="true" aria-invalid="false" value="">
+                                            </div>
+                                           <br>
+										  
+                                            <div>
+                                                <button id="saveAppointment" type="submit" class="btn btn-lg btn-info btn-block">
+                                                    <span id="payment-button-amount">Save</span>
+                                                </button>
+                                            </div>
+                                        <!-- </form> -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> <!-- .card -->
+
+                    </div><!--/.col-->
+
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header"><strong>Doctor</strong></div>
+                                <div class="card-body--">
+                                    <div class="table-stats order-table ov-h">
+                                        <table id="doctor-schedule" class="table" style="display: block;overflow-x: auto;white-space: nowrap;">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th class="serial">Doctor</th>
+                                                    <th>Mon</th>
+                                                    <th>Tue</th>
+                                                    <th>Wed</th>
+                                                    <th>Thu</th>
+                                                    <th>Fri</th>
+                                                    <th>Sat</th>
+                                                    <th>Sun</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="schedule">
+											
+												
+                                            </tbody>
+                                        </table>
+                                    </div> <!-- /.table-stats -->
+                                </div>
+                      </div>
+
+                        
+                 
+                    </div>
+
+            </div>
+
+
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
+    <div class="clearfix"></div>
+
+    <footer class="site-footer">
+        <div class="footer-inner bg-white">
+            <div class="row">
+                <div class="col-sm-6">
+                    Copyright &copy; 2020 HJDoshi GHS Hospital
+                </div>
+                <div class="col-sm-6 text-right">
+                    Designed by <a href="https://colorlib.com">Innovate Platz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div><!-- /#right-panel -->
+
+<!-- Right Panel -->
+
+<!-- Scripts -->
+<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/hjdoshi/jquery.min.js}"></script>
+<script th:src="@{/hjdoshi/popper.min.js}"></script>
+<script th:src="@{/hjdoshi/bootstrap.min.js}"></script>
+<script th:src="@{/hjdoshi/jquery.matchHeight.min.js}"></script>
+<script src="assets/js/main.js"></script>
+<script th:src="@{/jquery/jquery-1.12.4.js}"></script>
+<script th:src="@{/jquery/jquery-ui.js}"></script>
+<script>
+$(document).ready(function() {
+	
+	$( function() {
+	    $( "#datepicker" ).datepicker({ minDate: 0});
+	  } );
+	
+	var ajaxData = null;
+	$.ajax({
+    		type: "GET",
+       		url :'/fetch-department',
+       	 	contentType: "application/json",
+    		async: false,
+       		success : function(data) {
+       		console.log("successfully fetch department details ::" +data.length);
+       	 	//console.log(data);
+       	 	ajaxData = data;
+       	 	$("#department").empty();
+       	 	$("#department").append('<option value = "select">select</option>');
+			$.each(data,function(i, department) {
+				var div_data = "<option value="+department.departmantId+">" + department.departmentName+ "</option>";
+				$(div_data).appendTo('#department');
+			});
+       	}
+	});//ajax 
+	
+	
+	//$(".badge").on("click", "tbody.td",function(){
+	$(document).on('click', '.badge', function(){ 
+		//console.log("Clicked");
+		var patientName = $("#patientName").val();
+		var doctor = $(this).attr('id');
+		var appointmentDay = $(this).attr('name');
+		var appointmentSlot = $(this).text();
+		
+		$('#doctor option[value="'+doctor+'"]').prop("selected", true);
+		$('#appointmentDay option[value="'+appointmentDay+'"]').prop("selected", true);
+		$("#appointmentSlot").val(appointmentSlot);
+	});
+	
+	$("#saveAppointment").click(
+			function(event) {
+				var patientFirstName = $("#patientFirstName").val();
+				var patientLastName = $("#patientLastName").val();
+				var mobileNo = $("#mobileNo").val();
+				var department = $('#department :selected').val();
+				var departmentName = $('#department :selected').text();
+				var doctor = $("#doctor").val();
+				var appointmentDay = $('#appointmentDay :selected').val();
+				var appointmentSlot = $("#appointmentSlot").val();
+				var allotedSlot = $("#allotedSlot").val();
+				var gender = $("#gender").val();
+				var patientAge = $("#patient-age").val();
+				var reference = $("#reference").val();
+				var address = $("#address").val();
+				var visitingType =  $('input[name="inline-radios"]:checked').val();
+				var appointmentDate = $('#datepicker').val();
+				var mydate = new Date(appointmentDate);
+				var currentMonth = mydate.getMonth()+ 1;
+				var currentDay = mydate.getDate();
+				var currentDate = mydate.getFullYear()+'-'+currentMonth+'-'+currentDay;
+				var finaldate = new Date(currentDate);
+				
+				if (/^\d{10}$/.test(mobileNo)) {
+				    // value is ok, use it
+				} else {
+				    alert("Invalid number must be ten digits");
+				    $("#mobileNo").focus();
+				    return false
+				}
+				
+				
+				/* console.log("patientName = "+patientFirstName+" "+patientLastName +" mobileNo = "+mobileNo+" department = "+department
+						+" doctor = "+doctor+" appointmentDay = "+appointmentDay
+						+" appointmentSlot = "+appointmentSlot+" visitingType = "+visitingType
+						+" appointmentDate = "+finaldate+" allotedSlot = "+allotedSlot); */
+				
+				var fdata = {
+						"patientFirstName":patientFirstName,
+						"patientLastName":patientLastName,
+						"mobileNo":mobileNo,
+						"departmentId":department,
+						"departmentName":departmentName,
+						"doctorId":doctor,
+						"appointmentDay":appointmentDay,
+						"appointmentSlot":appointmentSlot,
+						"allotedSlot":allotedSlot,
+						"appointmentDate":finaldate,
+						"visitingType":visitingType,
+						"gender":gender,
+						"age":patientAge,
+						"reference":reference,
+						"address":address,
+						"insertId":"ganeshc",
+						"updateId":"ganeshc"
+				};
+				
+				//alert("fdata::" + JSON.stringify(fdata));
+						
+				$.ajax({
+					type : "POST",
+						url : '/save-appointment',
+						type : "POST",
+						data : JSON.stringify(fdata),
+						enctype : 'application/json',
+						contentType : 'application/json',
+						success : function(data) {
+							alert(data);
+							location.reload();
+						}
+				});
+			});
+	
+	
+			
+	
+			$('#department').on('change',function() {
+				
+				var departmentId = $('#department :selected').val();
+				var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+				$.ajax({
+					type : "GET",
+					url : '/fetch-doctor-schedule/'+departmentId,
+					contentType : "application/json",
+					async : false,
+					success : function(data) {
+						//console.log(data);
+						//$("#doctor").empty();
+						//$("#doctor").append('<option value = "select">select</option>');
+						$.each(data,function(i, doctor) {
+							var div_data = "<option value="+doctor.doctorId+">" + doctor.doctorName+ "</option>";
+							$(div_data).appendTo('#doctor');
+						});
+						
+						$('#schedule').empty();
+						for (var i = 0; i < data.length; i++) {
+							$('#schedule').append( '<tr>');
+							$('#schedule').append( '<td>' + data[i].doctorName + '</td>' );
+							//console.log(data[i].days);
+							var ctr=0;
+							var d = new Date();
+							dayloop:
+							for(var j=0;j< data[i].days.length;j++){
+								//console.log("day = "+data[i].days[j]+" j = "+j);
+								var index = days.indexOf(data[i].days[j]);
+								
+								//console.log("ctr = "+ctr);
+								for(var day=ctr; day<7;day++){
+									if(day==days.indexOf(data[i].days[j])){
+										var dayCtr = ctr+1;
+										var currentMonth = d.getMonth()+ 1;
+										var currentDay = d.getDate()+ctr;
+										var currentDate = d.getFullYear()+'-'+currentMonth+'-'+currentDay;
+										//console.log("currentDate = "+currentDate);
+										//console.log("d.getDate() "+d.getDate()+" d.getDay() = "+d.getDay());
+										$('#schedule').append( '<td><span id="'+data[i].doctorId+'" name="'+data[i].days[j]+'" class="badge badge-complete">' + data[i].startTime[j] +'-'+data[i].endTime[j]+ '</span></td>' );
+										ctr++;
+										continue dayloop;
+									}else{
+										ctr++;
+										$('#schedule').append( '<td></td>' );
+									}
+								}
+							}
+							$('#schedule').append( '<tr>');
+						}
+					},
+					error : function(data) {
+						//$("#saveAllocation").attr("disabled", true);
+						//console.log(data);
+						$("#doctor").empty();
+						$("#doctor").append('<option value = "select">select</option>');
+						//alert("Error fecthing employees");
+					}
+				});
+			});
+			
+			/* function fetchDoctorsByDepartment(departmentId) {
+				$.ajax({
+					type : "GET",
+					url : '/fetch-doctor-schedule/'+departmentId,
+					contentType : "application/json",
+					async : false,
+					success : function(data) {
+						
+					}
+				});
+			} */
+	
+});
+</script>
+
+</body>
+</html>
