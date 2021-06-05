@@ -12,7 +12,7 @@ phases:
       - echo pre_build
   build:
     commands:
-      - gradle build
+      - ./gradlew  build
       - echo build
   post_build:
     commands:
